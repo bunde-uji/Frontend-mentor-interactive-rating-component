@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+  <link rel="stylesheet" href="style.css">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  
+  <title>Frontend Mentor | Interactive rating component</title>
+
+  <style>
+    .attribution { font-size: 11px;
+       text-align: center;
+       color: hsl(217, 12%, 63%); 
+      }
+    .attribution a { color: hsl(228, 45%, 44%); text-decoration: none;}
+  </style>
+</head>
+<body>
+
+  <div id="rating-container" class="rating-container container show">
+    <img id="star-icon" src="images/icon-star.svg" alt="">
+
+    <h2 id="rating-header">How did we do?</h2>
+
+    <p>Please let us know how we did with your support request. All feedback is appreciated 
+      to help us improve our offering!
+    </p>
+
+    <div class="rating-numbers-container">
+      <button data-rating-no="1" class="rating-number" style="padding: 9px 18px;">1</button>
+      <button data-rating-no="2" class="rating-number">2</button>
+      <button data-rating-no="3" class="rating-number">3</button>
+      <button data-rating-no="4" class="rating-number">4</button>
+      <button data-rating-no="5" class="rating-number">5</button>
+    </div>
+
+    <button id="submit-btn">SUBMIT</button>
+  </div>
+
+
+  <div id="thankyou-container" class="thankyou-container container">
+    <img id="thankyou-img" src="images/illustration-thank-you.svg" alt="">
+
+    <span id="thankyou-info"></span>
+
+    <h2 id="thankyou-header">Thank you!</h2>
+
+    <p style="text-align: center;">We appreciate you taking the time to give a rating. If you ever need more support, 
+      don’t hesitate to get in touch!</p>
+  </div>
+
+  
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">Bunde Uji</a>.
+  </div>
+
+
+  <script>
+    let ratingNumbers = document.querySelectorAll('.rating-number'),
+        submitBtn = document.getElementById('submit-btn'),
+        ratingContainer = document.getElementById('rating-container'),
+        thankyouContainer = document.getElementById('thankyou-container'),
+        thankyouInfo = document.getElementById('thankyou-info');
+
+  
+    function ratingSelector() {
+      for (let i of ratingNumbers) {
+        i.addEventListener('click', (e)=> {
+          for (let j of ratingNumbers) {
+          j.classList.remove('selected-button');
+          }
+          i.classList.add('selected-button');
+          ratingValue += 3;
+        })
+        if (i.classList.contains('selected-button')) console.log(32);
+      }
+    }
+
+    ratingSelector();
+
+
+    function ratingDisplay() {
+      for (const i of ratingNumbers) {
+        if (i.classList.contains('selected-button')) thankyouInfo.innerHTML = `You selected ${i.getAttribute('data-rating-no')} out of 5`;
+      }
+    }
+  
+    function dialogDisplay() {
+      submitBtn.addEventListener('click', (e)=>{
+        ratingDisplay();
+        ratingContainer.classList.remove('show');
+        thankyouContainer.classList.add('show');
+      })
+    }
+
+    dialogDisplay();
+   
+
+    
+
+
+  </script>
+</body>
+</html>
